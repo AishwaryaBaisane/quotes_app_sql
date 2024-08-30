@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app_sql/Controller/Quote_Controller.dart';

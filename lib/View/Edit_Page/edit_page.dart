@@ -44,7 +44,7 @@ class ThoughtScreen extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      height: height * 0.9 + 65,
+                      height: height * 0.9 + 47,
                       width: width * 0.9 + 100,
                       decoration: BoxDecoration(
                         color: Colors.black,
@@ -80,7 +80,7 @@ class ThoughtScreen extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 30,
+                                fontSize: 25,
                                 shadows: [
                                   Shadow(
                                     color: Colors.black38,

@@ -123,8 +123,6 @@
 //   }
 // }
 
-
-
 class Quote {
   final String category;
   final String quote;
@@ -138,7 +136,7 @@ class Quote {
     required this.isLiked,
   });
 
-  factory Quote.fromJson(Map<String, dynamic> json) {
+  factory Quote.fromJson(Map json) {
     return Quote(
       category: json['cate'],
       quote: json['quote'],
@@ -147,7 +145,7 @@ class Quote {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map toJson() {
     return {
       'cate': category,
       'quote': quote,
@@ -156,6 +154,3 @@ class Quote {
     };
   }
 }
-
-
-

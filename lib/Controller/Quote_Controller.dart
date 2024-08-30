@@ -53,14 +53,12 @@ class DataController extends GetxController {
   }
 
   void toggleLike(Quote quote, int index) async {
-    if (likedQuotes.any((liked) => liked.quote == quote.quote))
-    {
+    if (likedQuotes.any((liked) => liked.quote == quote.quote)) {
       likedQuotes.removeWhere((liked) => liked.quote == quote.quote);
       await _databaseHelper.deleteLikedQuote(quote.quote);
-    } else
-    {
+    } else {
       likedQuotes.add(quote);
-      await _databaseHelper.insertLikedQuote(quote);
+      await _databaseHelper.insertData(quote.author,quote.quote,quote.category,index);
     }
 
     if (quotes[index].isLiked == "1") {
@@ -71,6 +69,11 @@ class DataController extends GetxController {
     update();
     quotes.refresh();
     print(quotes[index].isLiked);
+  }
+  Future<RxList> showCategoryData(String category)
+  async {
+    likedQuotes.value=await _databaseHelper.showCategoryWiseData(category);
+    return likedQuotes;
   }
 
   void loadLikedQuotes() async {

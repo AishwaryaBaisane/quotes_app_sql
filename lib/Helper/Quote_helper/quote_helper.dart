@@ -1,4 +1,3 @@
-
 import 'package:path/path.dart';
 import 'package:quotes_app_sql/Modal/quote_modal.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,9 +15,18 @@ class DatabaseHelper {
     return _database!;
   }
 
+  Future readData() async {
+    Database? db = await database;
+    String sql = '''
+    SELECT * FROM likedQuotes;
+    ''';
+    return await db!.rawQuery(sql);
+  }
+
+
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'quotes.db');
+    final path = join(dbPath, 'likedQuotes.db');
 
     return await openDatabase(
       path,
@@ -38,13 +46,31 @@ class DatabaseHelper {
     );
   }
 
-  Future<void> insertLikedQuote(Quote quote) async {
-    final db = await database;
-    await db.insert(
-      'likedQuotes',
-      quote.toJson(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+  // Future<void> insertLikedQuote(Quote quote) async {
+  //   final db = await database;
+  //   await db.insert(
+  //     'likedQuotes',
+  //     quote.toJson(),
+  //     conflictAlgorithm: ConflictAlgorithm.replace,
+  //   );
+  // }
+  Future<void> insertData(String category,String quote,String author,int isLiked)
+  async {
+    Database? db = await database;
+    String sql='''
+    INSERT INTO likedQuotes(category,quote,author,isLiked) VALUES(?,?,?,?);
+    ''';
+    List args=[category,quote,author,isLiked];
+    await db!.rawInsert(sql,args);
+  }
+  Future showCategoryWiseData(String category)
+  async {
+    Database? db = await database;
+    String sql='''
+    SELECT * FROM likedQuotes WHERE category=?
+    ''';
+    List args=[category];
+    return await db!.rawQuery(sql,args);
   }
 
   Future<void> deleteLikedQuote(String quote) async {
