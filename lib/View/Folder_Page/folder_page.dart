@@ -146,17 +146,3 @@ class QuotesDetailScreen extends StatelessWidget {
     );
   }
 }
-//if(inspiration.isNotEmpty)
-//            {
-//              return Container(
-//                color: Colors.red,
-//                child: Text('hiiii'),
-//              );
-//            }
-//          else
-//            {
-//              return  Container(
-//                color: Colors.black,
-//                child: Text('byyy'),
-//              );
-//            }
