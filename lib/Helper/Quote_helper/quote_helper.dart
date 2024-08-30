@@ -46,14 +46,6 @@ class DatabaseHelper {
     );
   }
 
-  // Future<void> insertLikedQuote(Quote quote) async {
-  //   final db = await database;
-  //   await db.insert(
-  //     'likedQuotes',
-  //     quote.toJson(),
-  //     conflictAlgorithm: ConflictAlgorithm.replace,
-  //   );
-  // }
   Future<void> insertData(String category,String quote,String author,int isLiked)
   async {
     Database? db = await database;
